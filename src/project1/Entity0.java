@@ -5,6 +5,17 @@ public class Entity0 extends Entity
     // Perform any necessary initialization in the constructor
     public Entity0()
     {
+    super();
+	distanceTable[0][0] = 0;
+	distanceTable[1][1] = 1;
+	distanceTable[2][2] = 3;
+	distanceTable[3][3] = 7;
+	printDT();
+	int[] minimumCost = generateMinimumCostArray();
+	sendToLayer2(0 , 1 , minimumCost);	
+	sendToLayer2(0 , 2 , minimumCost);
+	sendToLayer2(0 , 3 , minimumCost);
+	System.out.println("Table 0 initialized");
     }
     
     // Handle updates when a packet is received.  Students will need to call
@@ -13,7 +24,16 @@ public class Entity0 extends Entity
     // the packet correctly.  Read the warning in NetworkSimulator.java for more
     // details.
     public void update(Packet p)
-    {        
+    { 
+    boolean changed = performUpdate(p);
+	if(changed){
+		printDT();
+		int[] minimumCost = generateMinimumCostArray();
+		sendToLayer2(0 , 1 , minimumCost);	
+		sendToLayer2(0 , 2 , minimumCost);
+		sendToLayer2(0 , 3 , minimumCost);
+		System.out.println("Table 0 updated\n");
+	}
     }
     
     public void linkCostChangeHandler(int whichLink, int newCost)
