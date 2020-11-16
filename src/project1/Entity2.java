@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 public class Entity2 extends Entity
 {
+    final int NODE_NUM = 2;
+    final int NEIGHBORS[] = {0, 1, 2, 3};
+
     // Perform any necessary initialization in the constructor
     public Entity2()
     {
-        final int NODE_NUM = 2;
-        final int NEIGHBORS[] = {0, 1, 2, 3};
         int[] neighbor_costs = {3, 1, 0, 2};
 
         for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
@@ -30,6 +31,38 @@ public class Entity2 extends Entity
     // details.
     public void update(Packet p)
     {
+        int[] min_distance = new int[NetworkSimulator.NUMENTITIES];
+        boolean table_changed = false;
+
+        System.out.println("Packet Sender: Node " + p.getSource());
+
+        for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
+            int current_cost = distanceTable[NODE_NUM][i];
+            int source_cost = distanceTable[NODE_NUM][p.getSource()];
+            int packet_cost = p.getMincost(i);
+
+            if (source_cost + packet_cost < current_cost) {
+                min_distance[i] = source_cost + packet_cost;
+                table_changed = true;
+            } else {
+                min_distance[i] = current_cost;
+            }
+
+            distanceTable[p.getSource()][i] = packet_cost;
+        }
+
+        if (table_changed) {
+            System.out.println("Distance table changed");
+            System.out.println("Minimum distances sent: " + min_distance.toString());
+            for (int neighbor : NEIGHBORS) {
+                Packet dtPacket = new Packet(NODE_NUM, neighbor, min_distance);
+                NetworkSimulator.toLayer2(dtPacket);
+            }
+        } else {
+            System.out.println("Distance table not changed.");
+        }
+
+        printDT();
     }
     
     public void linkCostChangeHandler(int whichLink, int newCost)
