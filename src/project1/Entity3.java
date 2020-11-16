@@ -5,9 +5,9 @@ public class Entity3 extends Entity
     // Perform any necessary initialization in the constructor
     public Entity3()
     {
-      for(int f = 0; f < 4; f++){
-        for(int g = 0; g < 4; g++){
-          distanceTable[f][g] = 999;
+      for(int x = 0; x < 4; x++){
+        for(int y = 0; y < 4; y++){
+          distanceTable[x][y] = 999;
         }
       }
       //as with Entities 1 and 2, the distance table is being filled with Entity3's values.
@@ -70,9 +70,9 @@ public class Entity3 extends Entity
     public void linkCostChangeHandler(int whichLink, int newCost)
     {
       //we start out by deleting all previous data, becuase it could be wrong.
-      for(int f = 0; f < 4; f++){
-        for(int g = 0; g < 4; g++){
-          distanceTable[f][g] = 999;
+      for(int x = 0; x < 4; z++){
+        for(int y = 0; y < 4; y++){
+          distanceTable[x][y] = 999;
         }
       }
       //we can now plug in the costs that are given in the diagram
