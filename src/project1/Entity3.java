@@ -1,10 +1,24 @@
 package project1;
 
+import java.util.Arrays;
+
 public class Entity3 extends Entity
-{    
+{
     // Perform any necessary initialization in the constructor
     public Entity3()
     {
+        final int NODE_NUM = 3;
+        final int[] NEIGHBORS = {0, 2};
+        int[] neighbor_costs = {7, 999, 2, 0};
+
+        Arrays.fill(distanceTable, 999);
+        for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
+            distanceTable[NODE_NUM][i] = neighbor_costs[i];
+        }
+        for (int neighbor : NEIGHBORS) {
+            Packet dtPacket = new Packet(NODE_NUM, neighbor, neighbor_costs);
+            NetworkSimulator.toLayer2(dtPacket);
+        }
     }
     
     // Handle updates when a packet is received.  Students will need to call
