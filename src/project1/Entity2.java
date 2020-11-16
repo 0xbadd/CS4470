@@ -39,6 +39,8 @@ public class Entity2 extends Entity
         int[] min_distance = new int[NetworkSimulator.NUMENTITIES];
         boolean table_changed = false;
 
+        System.out.println();
+        System.out.println("Packet received by Node " + NODE_NUM);
         System.out.println("Packet Sender: Node " + p.getSource());
 
         for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
@@ -58,7 +60,8 @@ public class Entity2 extends Entity
 
         if (table_changed) {
             System.out.println("Distance table changed");
-            System.out.println("Minimum distances sent: " + min_distance.toString());
+            System.out.println("Minimum distances sent: " + Arrays.toString(min_distance));
+
             for (int neighbor : NEIGHBORS) {
                 Packet dtPacket = new Packet(NODE_NUM, neighbor, min_distance);
                 NetworkSimulator.toLayer2(dtPacket);
