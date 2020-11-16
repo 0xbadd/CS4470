@@ -7,11 +7,13 @@ public class Entity0 extends Entity
     // Perform any necessary initialization in the constructor
     public Entity0()
     {
-        final int NODE_NUM = 0;
-        final int NEIGHBORS[] = {0, 1, 2, 3};
+        final int NODE_NUM = 1;
+        final int[] NEIGHBORS = {0, 1};
         int[] neighbor_costs = {0, 1, 3, 7};
 
-        Arrays.fill(distanceTable, 999);
+        for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
+            Arrays.fill(distanceTable[i], 999);
+        }
         for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
             distanceTable[NODE_NUM][i] = neighbor_costs[i];
         }
@@ -27,7 +29,7 @@ public class Entity0 extends Entity
     // the packet correctly.  Read the warning in NetworkSimulator.java for more
     // details.
     public void update(Packet p)
-    {        
+    {
     }
     
     public void linkCostChangeHandler(int whichLink, int newCost)

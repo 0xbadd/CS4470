@@ -11,7 +11,9 @@ public class Entity2 extends Entity
         final int NEIGHBORS[] = {0, 1, 2, 3};
         int[] neighbor_costs = {3, 1, 0, 2};
 
-        Arrays.fill(distanceTable, 999);
+        for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
+            Arrays.fill(distanceTable[i], 999);
+        }
         for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
             distanceTable[NODE_NUM][i] = neighbor_costs[i];
         }
