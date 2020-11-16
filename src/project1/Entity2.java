@@ -5,9 +5,9 @@ public class Entity2 extends Entity
     // Perform any necessary initialization in the constructor
     public Entity2()
     {
-      for(int f = 0; f < 4; f++){
-        for(int g = 0; g < 4; g++){
-          distanceTable[f][g] = 999;
+      for(int x = 0; x < 4; x++){
+        for(int y = 0; y < 4; y++){
+          distanceTable[x][y] = 999;
         }
       }
       distanceTable[0][2] = 3;
