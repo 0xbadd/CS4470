@@ -2,9 +2,9 @@ package project1;
 public class Entity1 extends Entity {
   // Perform any necessary initialization in the constructor
   public Entity1() {
-    for (int f = 0; f < 4; f++) {
-      for (int g = 0; g < 4; g++) {
-        distanceTable[f][g] = 999;
+    for (int x = 0; x < 4; x++) {
+      for (int y = 0; y < 4; y++) {
+        distanceTable[x][y] = 999;
       }
     }
     // This section has the same function as in Entity0, but the values are
@@ -70,9 +70,9 @@ public class Entity1 extends Entity {
 
   public void linkCostChangeHandler(int whichLink, int newCost) {
     // we start out by deleting all previous data, becuase it could be wrong.
-    for (int f = 0; f < 4; f++) {
-      for (int g = 0; g < 4; g++) {
-        distanceTable[f][g] = 999;
+    for (int x = 0; x < 4; x++) {
+      for (int y = 0; y < 4; y++) {
+        distanceTable[x][y] = 999;
       }
     }
     // we can now plug in the costs that are given in the diagram
