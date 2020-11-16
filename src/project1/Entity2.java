@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Entity2 extends Entity
 {
     final int NODE_NUM = 2;
-    final int NEIGHBORS[] = {0, 1, 2, 3};
+    final int NEIGHBORS[] = {0, 1, 3};
 
     // Perform any necessary initialization in the constructor
     public Entity2()
@@ -50,6 +50,7 @@ public class Entity2 extends Entity
 
             if (source_cost + packet_cost < current_cost) {
                 min_distance[i] = source_cost + packet_cost;
+                distanceTable[NODE_NUM][i] = min_distance[i];
                 table_changed = true;
             } else {
                 min_distance[i] = current_cost;

@@ -50,6 +50,7 @@ public class Entity3 extends Entity
 
             if (source_cost + packet_cost < current_cost) {
                 min_distance[i] = source_cost + packet_cost;
+                distanceTable[NODE_NUM][i] = min_distance[i];
                 table_changed = true;
             } else {
                 min_distance[i] = current_cost;
