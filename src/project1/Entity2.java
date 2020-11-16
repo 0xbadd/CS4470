@@ -18,6 +18,11 @@ public class Entity2 extends Entity
         for (int i = 0; i < NetworkSimulator.NUMENTITIES; i++) {
             distanceTable[NODE_NUM][i] = neighbor_costs[i];
         }
+
+        System.out.println();
+        System.out.println("Initial distance table for Node " + NODE_NUM);
+        printDT();
+
         for (int neighbor : NEIGHBORS) {
             Packet dtPacket = new Packet(NODE_NUM, neighbor, neighbor_costs);
             NetworkSimulator.toLayer2(dtPacket);
